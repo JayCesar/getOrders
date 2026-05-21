@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /home/jaycesar/dev/aws/holliday-projects/backend/getOrders/src/main/kotlin/jaycesar/dev/core/domain)",
+      "Bash(mkdir -p /home/jaycesar/dev/aws/holliday-projects/backend/getOrders/src/main/kotlin/jaycesar/dev/core/ports)",
+      "Bash(mkdir -p /home/jaycesar/dev/aws/holliday-projects/backend/getOrders/src/main/kotlin/jaycesar/dev/application)",
+      "Bash(mkdir -p /home/jaycesar/dev/aws/holliday-projects/backend/getOrders/src/main/kotlin/jaycesar/dev/adapters/inbound)",
+      "Bash(mkdir -p /home/jaycesar/dev/aws/holliday-projects/backend/getOrders/src/main/kotlin/jaycesar/dev/adapters/outbound)",
+      "Bash(./gradlew compileKotlin *)",
+      "Bash(./gradlew build *)"
+    ]
+  }
+}
