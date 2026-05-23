@@ -23,5 +23,7 @@ data class DeliveryReport(
     val fraudIndicators: Any?,
     val recommendations: Any?,
     val suggestedActions: Any?,
+    val deliveryDateFrom: LocalDateTime?,
+    val deliveryDateTo: LocalDateTime?,
     val createdAt: LocalDateTime
 )

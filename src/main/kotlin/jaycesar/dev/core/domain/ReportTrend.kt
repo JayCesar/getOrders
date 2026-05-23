@@ -6,5 +6,6 @@ import java.time.LocalDateTime
 data class ReportTrend(
     val createdAt: LocalDateTime,
     val failureRatePercent: BigDecimal?,
-    val riskLevel: String
+    val riskLevel: String,
+    val deliveryDateFrom: LocalDateTime? = null
 )

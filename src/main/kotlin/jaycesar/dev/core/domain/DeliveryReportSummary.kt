@@ -8,5 +8,7 @@ data class DeliveryReportSummary(
     val createdAt: LocalDateTime,
     val riskLevel: String,
     val failureRatePercent: BigDecimal?,
-    val totalDeliveries: Int
+    val totalDeliveries: Int,
+    val deliveryDateFrom: LocalDateTime?,
+    val deliveryDateTo: LocalDateTime?
 )

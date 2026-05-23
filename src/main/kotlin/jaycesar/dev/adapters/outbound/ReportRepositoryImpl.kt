@@ -7,6 +7,7 @@ import jaycesar.dev.core.domain.ReportTrend
 import jaycesar.dev.core.ports.ReportRepository
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Component
+import java.time.LocalDateTime
 
 @Component
 class ReportRepositoryImpl(
@@ -22,17 +23,26 @@ class ReportRepositoryImpl(
 
     override fun findTrend(limit: Int): List<ReportTrend> =
         jpa.findTrend(PageRequest.of(0, limit))
-            .map { ReportTrend(it.createdAt, it.failureRatePercent, it.riskLevel) }
+            .map { ReportTrend(it.deliveryDateFrom ?: it.createdAt, it.failureRatePercent, it.riskLevel, it.deliveryDateFrom) }
 
     override fun findById(id: Long): DeliveryReport? =
         jpa.findById(id).orElse(null)?.toDomain()
+
+    override fun findSummariesByDateRange(from: LocalDateTime, to: LocalDateTime): List<DeliveryReportSummary> =
+        jpa.findByDeliveryDateRange(from, to).map { it.toSummary() }
+
+    override fun findTrendByDateRange(from: LocalDateTime, to: LocalDateTime): List<ReportTrend> =
+        jpa.findByDeliveryDateRangeAsc(from, to)
+            .map { ReportTrend(it.deliveryDateFrom ?: it.createdAt, it.failureRatePercent, it.riskLevel, it.deliveryDateFrom) }
 
     private fun DeliveryReportEntity.toSummary() = DeliveryReportSummary(
         id = id!!,
         createdAt = createdAt,
         riskLevel = riskLevel,
         failureRatePercent = failureRatePercent,
-        totalDeliveries = totalDeliveries
+        totalDeliveries = totalDeliveries,
+        deliveryDateFrom = deliveryDateFrom,
+        deliveryDateTo = deliveryDateTo
     )
 
     private fun DeliveryReportEntity.toDomain() = DeliveryReport(
@@ -55,6 +65,8 @@ class ReportRepositoryImpl(
         fraudIndicators = parseJson(fraudIndicators),
         recommendations = parseJson(recommendations),
         suggestedActions = parseJson(suggestedActions),
+        deliveryDateFrom = deliveryDateFrom,
+        deliveryDateTo = deliveryDateTo,
         createdAt = createdAt
     )
 

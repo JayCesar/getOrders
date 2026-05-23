@@ -31,6 +31,12 @@ class AffectedCustomerEntity(
     @Column(name = "region", length = 100)
     val region: String? = null,
 
+    @Column(name = "carrier", length = 100)
+    val carrier: String? = null,
+
+    @Column(name = "delivery_attempted_at")
+    val deliveryAttemptedAt: LocalDateTime? = null,
+
     @Column(name = "whatsapp_sent")
     val whatsappSent: Boolean = false,
 

@@ -14,14 +14,18 @@ class ReportController(private val service: ReportService) {
 
     @GetMapping
     fun listReports(
-        @RequestParam(defaultValue = "20") limit: Int,
-        @RequestParam(defaultValue = "0") offset: Int
-    ) = service.listReports(limit, offset)
+        @RequestParam(defaultValue = "100") limit: Int,
+        @RequestParam(defaultValue = "0") offset: Int,
+        @RequestParam(required = false) from: String?,
+        @RequestParam(required = false) to: String?
+    ) = service.listReports(limit, offset, from, to)
 
     @GetMapping("/trend")
     fun getTrend(
-        @RequestParam(defaultValue = "10") limit: Int
-    ) = service.getTrend(limit)
+        @RequestParam(defaultValue = "50") limit: Int,
+        @RequestParam(required = false) from: String?,
+        @RequestParam(required = false) to: String?
+    ) = service.getTrend(limit, from, to)
 
     @GetMapping("/{id}")
     fun getReport(@PathVariable id: Long): ResponseEntity<Any> = try {

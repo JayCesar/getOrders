@@ -59,6 +59,12 @@ class CustomerRepositoryImpl(
         return sentAt
     }
 
+    override fun countByRegion(reportId: Long): List<Pair<String, Long>> =
+        jpa.countGroupByRegion(reportId).map { (it.region ?: "") to it.count }
+
+    override fun countByCarrier(reportId: Long): List<Pair<String, Long>> =
+        jpa.countGroupByCarrier(reportId).map { (it.carrier ?: "") to it.count }
+
     private fun AffectedCustomerEntity.toDomain() = AffectedCustomer(
         id = id!!,
         reportId = reportId,
@@ -66,6 +72,8 @@ class CustomerRepositoryImpl(
         whatsapp = whatsapp,
         failureReason = failureReason,
         region = region,
+        carrier = carrier,
+        deliveryAttemptedAt = deliveryAttemptedAt,
         whatsappSent = whatsappSent,
         whatsappSentAt = whatsappSentAt,
         createdAt = createdAt

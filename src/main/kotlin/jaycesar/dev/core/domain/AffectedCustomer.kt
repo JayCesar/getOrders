@@ -9,6 +9,8 @@ data class AffectedCustomer(
     val whatsapp: String?,
     val failureReason: String?,
     val region: String?,
+    val carrier: String?,
+    val deliveryAttemptedAt: LocalDateTime?,
     val whatsappSent: Boolean,
     val whatsappSentAt: LocalDateTime?,
     val createdAt: LocalDateTime

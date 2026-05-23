@@ -14,4 +14,7 @@ interface CustomerRepository {
     ): Pair<List<AffectedCustomer>, Long>
 
     fun markWhatsappSent(id: Long): LocalDateTime?
+
+    fun countByRegion(reportId: Long): List<Pair<String, Long>>
+    fun countByCarrier(reportId: Long): List<Pair<String, Long>>
 }

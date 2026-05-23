@@ -71,6 +71,12 @@ class DeliveryReportEntity(
     @Column(name = "suggested_actions", columnDefinition = "JSON")
     val suggestedActions: String? = null,
 
+    @Column(name = "delivery_date_from")
+    val deliveryDateFrom: LocalDateTime? = null,
+
+    @Column(name = "delivery_date_to")
+    val deliveryDateTo: LocalDateTime? = null,
+
     @Column(name = "created_at", updatable = false)
     val createdAt: LocalDateTime = LocalDateTime.now()
 )

@@ -5,8 +5,8 @@ import jaycesar.dev.core.domain.DeliveryReportSummary
 import jaycesar.dev.core.domain.ReportTrend
 
 interface ReportService {
-    fun listReports(limit: Int, offset: Int): List<DeliveryReportSummary>
-    fun getTrend(limit: Int): List<ReportTrend>
+    fun listReports(limit: Int, offset: Int, from: String?, to: String?): List<DeliveryReportSummary>
+    fun getTrend(limit: Int, from: String?, to: String?): List<ReportTrend>
     fun getReport(id: Long): DeliveryReport
     fun getRegions(id: Long): Any?
     fun getCarriers(id: Long): Any?
